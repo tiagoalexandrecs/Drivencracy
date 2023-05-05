@@ -1,11 +1,13 @@
 import express from "express";
 import cors from "cors";
-import router from "./routes/index.routes.js";
+import choiceRouter from "./Routes/choice.routes.js";
+import pollRouter from "./Routes/poll.routes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(router);
+app.use(pollRouter);
+app.use(choiceRouter);
 
 //criar o env DATABASE_URL=mongodb://localhost:27017/moodboard
 const port = process.env.PORT || 5000;

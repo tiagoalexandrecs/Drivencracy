@@ -1,5 +1,5 @@
 import { db } from "../Database/database.connection.js";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 
 export async function createPoll(req,res){
     let now= dayjs();
