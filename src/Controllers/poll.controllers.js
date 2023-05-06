@@ -7,6 +7,7 @@ export async function createPoll(req,res){
     const {title, expireAt}= req.body
     
     let defaultExpire = now.add(30, 'day').format("YYYY-MM-DD HH:mm")
+    console.log(defaultExpire)
    
     
     try{
