@@ -54,11 +54,12 @@ export async function getChoices( req, res) {
 export async function postVote (req,res){
     const {id} = req.params;
     let now= dayjs()
-    let date= now.format("YYYY/MM/DD")
+    let date= now.format("YYYY-MM-DD HH:mm")
     let choice= await db.collection("choices").findOne({_id: new ObjectId(id)})
     if (choice){
-        let poll= await db.collection("polls").findOne({_id: choice.pollId})
-        if (poll && now < poll.expireTime){
+        let poll= await db.collection("polls").findOne({_id: new ObjectId(choice.pollId)})
+        const timestamp= dayjs(poll.expireAt).toDate().getTime()
+        if (poll && now < timestamp){
             try{
                 await db.collection("votes").insertOne({createdAt: date, choiceId: new ObjectId(id)})
                 return res.sendStatus(201)
