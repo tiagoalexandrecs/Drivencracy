@@ -4,19 +4,21 @@ import dayjs from "dayjs";
 
 export async function postChoice(req,res){
     const {title, pollId}= req.body;
-    let now= dayjs()
+    let now= dayjs().toDate().getTime()
 
-    let poll= await db.collection("polls").findOne({_id: ObjectId(pollId)})
+    let poll= await db.collection("polls").findOne({_id: new ObjectId(pollId)})
+
 
     if(!poll){
         return res.sendStatus(404)
     }
     else{
+        const timestamp= dayjs(poll.expireAt).toDate().getTime()
         let name= await db.collection("choices").findOne({title: title});
         if(name){
         return res.sendStatus(409)
         }
-        else if(now > poll.expireTime){
+        else if(now > poll.timestamp){
             return res.sendStatus(403)
         }
         else{

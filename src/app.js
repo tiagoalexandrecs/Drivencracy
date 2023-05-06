@@ -10,5 +10,5 @@ app.use(pollRouter);
 app.use(choiceRouter);
 
 //criar o env DATABASE_URL=mongodb://localhost:27017/moodboard
-const port = process.env.PORT || 5000;
+const port = process.env.PORT ;
 app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
