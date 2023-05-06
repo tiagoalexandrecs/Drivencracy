@@ -33,9 +33,10 @@ export async function getResult(req,res){
    
     try {
         const poll= await db.collection("polls").findOne({_id: new ObjectId(id)});
+        console.log(poll)
         if (poll){
             
-            const choices = db.collection("choices").find({pollId: new ObjectId(poll._id)})
+            const choices = db.collection("choices").find({pollId: new ObjectId(id)}).toArray()
 
             for(let i=0; i< choices.length; i++){
         
@@ -59,7 +60,7 @@ export async function getResult(req,res){
 
               const winner= choices[0];
 
-              const totalVotes = db.collection("votes").find({choiceId: new ObjectId(winner._id)})
+              const totalVotes = db.collection("votes").find({choiceId: new ObjectId(winner._id)}).toArray()
 
               const resultado = {
                 _id: poll._id,
