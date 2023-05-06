@@ -43,7 +43,7 @@ export async function getChoices( req, res) {
     }
     else{
         try{
-            let choices= await db.collection("choices").find({pollId : id}).toArray()
+            let choices= await db.collection("choices").find({pollId : new ObjectId(id)}).toArray()
             return res.status(200).send(choices)
         } catch(err){
             console.log(err.message)
