@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 
 export async function createPoll(req,res){
     let now= dayjs();
+    const {title, expireAt}= req.body
     
     let defaultExpire = now.add(30, 'day').format("YYYY-MM-DD HH:mm")
    
