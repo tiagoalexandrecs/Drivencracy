@@ -21,7 +21,7 @@ export async function createPoll(req,res){
 
 export async function getPolls (req,res){
     try{
-        let polls= await db.collection("polls").find()
+        let polls= await db.collection("polls").find().toArray()
         return res.status(200).send(polls)
     } catch(err){
         console.log(err.message)
