@@ -32,22 +32,25 @@ export async function getResult(req,res){
     const {id}= req.params;
    
     try {
-        const poll= await db.collection("polls").findOne({_id: new ObjectId(id)});
+        const poll= await db.collection("polls").findOne({_id: ObjectId(id)});
         console.log(poll)
+        console.log(poll._id)
         if (poll){
-            
-            const choices = db.collection("choices").find({pollId: new ObjectId(id)}).toArray()
+            console.log("gheguei aqui")
+            const choices = await db.collection("choices").find({pollId: ObjectId(id)}).toArray()
+            console.log(choices)
 
             for(let i=0; i< choices.length; i++){
         
                 let maior =i;
                 let option= choices[i]
-                let votes=  db.collection("votes").find({choiceId: new ObjectId(option._id)}).toArray()
+                console.log(option)
+                let votes=  db.collection("votes").find({choiceId: ObjectId(option._id)}).toArray()
         
                 for(let j= i + 1; j<choices.length;j++){
         
                     let option2= choices[i]
-                    let votes2=  db.collection("votes").find({choiceId: new ObjectId(option2._id)}).toArray()
+                    let votes2=  db.collection("votes").find({choiceId:  ObjectId(option2._id)}).toArray()
         
                   if(votes2.length>votes.length){
                     maior = j;
@@ -60,7 +63,7 @@ export async function getResult(req,res){
 
               const winner= choices[0];
 
-              const totalVotes = db.collection("votes").find({choiceId: new ObjectId(winner._id)}).toArray()
+              const totalVotes = await db.collection("votes").find({choiceId: ObjectId(winner._id)}).toArray()
 
               const resultado = {
                 _id: poll._id,
