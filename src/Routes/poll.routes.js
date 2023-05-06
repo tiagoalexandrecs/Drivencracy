@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { authValidation } from "../Middlewares/authorization.js";
+import pollSchema from "../Schemas/poll.schema.js";
 import validateSchema from "../Middlewares/validateSchema.js";
 import { createPoll, getPolls, getResult } from "../Controllers/poll.controllers.js";
 
 const pollRouter= Router();
 
-pollRouter.post("/poll", validateSchema, createPoll);
+pollRouter.post("/poll", validateSchema(pollSchema), createPoll);
 
 pollRouter.get("/poll", getPolls)
 
