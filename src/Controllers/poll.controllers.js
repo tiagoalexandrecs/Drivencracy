@@ -42,12 +42,12 @@ export async function getResult(req,res){
         
                 let maior =i;
                 let option= choices[i]
-                let votes=  db.collection("votes").find({choiceId: new ObjectId(option._id)})
+                let votes=  db.collection("votes").find({choiceId: new ObjectId(option._id)}).toArray()
         
                 for(let j= i + 1; j<choices.length;j++){
         
                     let option2= choices[i]
-                    let votes2=  db.collection("votes").find({choiceId: new ObjectId(option2._id)})
+                    let votes2=  db.collection("votes").find({choiceId: new ObjectId(option2._id)}).toArray()
         
                   if(votes2.length>votes.length){
                     maior = j;
