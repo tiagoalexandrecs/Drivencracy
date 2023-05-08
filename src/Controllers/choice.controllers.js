@@ -5,8 +5,10 @@ import dayjs from "dayjs";
 export async function postChoice(req,res){
     const {title, pollId}= req.body;
     let now= dayjs().toDate().getTime()
+    console.log(now)
 
     let poll= await db.collection("polls").findOne({_id: new  ObjectId(pollId)})
+    console.log(poll)
 
 
     if(!poll){
