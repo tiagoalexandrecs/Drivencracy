@@ -58,7 +58,7 @@ export async function getChoices( req, res) {
 
 export async function postVote (req,res){
     const {id} = req.params;
-    let now= dayjs()
+    let now= dayjs().toDate().getTime()
     let date= now.format("YYYY-MM-DD HH:mm")
     let choice= await db.collection("choices").findOne({_id: new ObjectId(id)})
     if (choice){
@@ -69,7 +69,7 @@ export async function postVote (req,res){
                 await db.collection("votes").insertOne({createdAt: date, choiceId: new ObjectId(id)})
                 let vote= await db.collection("votes").find().toArray()
                 console.log(vote)
-                return res.status(201).send(vote)
+                return res.sendStatus(201)
             } catch(err){
                 console.log(err.message)
             }
