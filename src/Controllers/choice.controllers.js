@@ -6,7 +6,7 @@ export async function postChoice(req,res){
     const {title, pollId}= req.body;
     let now= dayjs().toDate().getTime()
 
-    let poll= await db.collection("polls").findOne({_id:  ObjectId(pollId)})
+    let poll= await db.collection("polls").findOne({_id: new  ObjectId(pollId)})
 
 
     if(!poll){
@@ -23,7 +23,7 @@ export async function postChoice(req,res){
         }
         else{
             try{
-                await db.collection("choices").insertOne({title: title, pollId: ObjectId(pollId)})
+                await db.collection("choices").insertOne({title: title, pollId: new ObjectId(pollId)})
                 let choice= await db.collection("choices").findOne({title: title})
                 return res.status(201).send(choice)
             }catch(err){
@@ -37,13 +37,14 @@ export async function postChoice(req,res){
 
 export async function getChoices( req, res) {
     const {id}= req.params;
-    let poll= await db.collection("polls").findOne({_id: ObjectId(id)})
+    let poll= await db.collection("polls").findOne({_id: new ObjectId(id)})
+    console.log(poll)
     if (!poll){
         return res.sendStatus(404)
     }
     else{
         try{
-            let choices= await db.collection("choices").find({pollId :  ObjectId(id)}).toArray()
+            let choices= await db.collection("choices").find({pollId :  new ObjectId(id)}).toArray()
             return res.status(200).send(choices)
         } catch(err){
             console.log(err.message)
@@ -55,13 +56,13 @@ export async function postVote (req,res){
     const {id} = req.params;
     let now= dayjs()
     let date= now.format("YYYY-MM-DD HH:mm")
-    let choice= await db.collection("choices").findOne({_id:  ObjectId(id)})
+    let choice= await db.collection("choices").findOne({_id: new ObjectId(id)})
     if (choice){
-        let poll= await db.collection("polls").findOne({_id:  ObjectId(choice.pollId)})
+        let poll= await db.collection("polls").findOne({_id: new ObjectId(choice.pollId)})
         const timestamp= dayjs(poll.expireAt).toDate().getTime()
         if (poll && now < timestamp){
             try{
-                await db.collection("votes").insertOne({createdAt: date, choiceId:  ObjectId(id)})
+                await db.collection("votes").insertOne({createdAt: date, choiceId: new ObjectId(id)})
                 return res.sendStatus(201)
             } catch(err){
                 console.log(err.message)
