@@ -58,7 +58,7 @@ export async function getChoices( req, res) {
 
 export async function postVote (req,res){
     const {id} = req.params;
-    let now= dayjs().toDate().getTime()
+    let now= dayjs()
     let date= now.format("YYYY-MM-DD HH:mm")
     let choice= await db.collection("choices").findOne({_id: new ObjectId(id)})
     if (choice){
