@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 export async function postChoice(req,res){
     const {title, pollId}= req.body;
     let now= dayjs().toDate().getTime()
+    
     console.log(now)
 
     let poll= await db.collection("polls").findOne({_id: new  ObjectId(pollId)})
@@ -16,6 +17,7 @@ export async function postChoice(req,res){
     }
     else{
         const timestamp= dayjs(poll.expireAt).toDate().getTime()
+        console.log(timestamp)
         let name= await db.collection("choices").findOne({title: title});
         if(name){
         return res.sendStatus(409)
@@ -65,7 +67,9 @@ export async function postVote (req,res){
         if (poll && now < timestamp){
             try{
                 await db.collection("votes").insertOne({createdAt: date, choiceId: new ObjectId(id)})
-                return res.sendStatus(201)
+                let vote= await db.collection("votes").find().toArray()
+                console.log(vote)
+                return res.status(201).send(vote)
             } catch(err){
                 console.log(err.message)
             }
