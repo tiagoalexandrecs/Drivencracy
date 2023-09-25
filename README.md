@@ -12,3 +12,24 @@ Creation of a poll
 Retrieval of all created polls
 ![Captura de tela de 2023-09-25 07-36-31](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/8869a718-ab7a-4307-aa00-0c435087bfdd)
 
+
+Creation of a vote choice
+![Captura de tela de 2023-09-25 07-47-07](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/fcb33d92-2114-48ae-9934-90c5d1495df8)
+
+
+The return of a poll's vote options 
+![Captura de tela de 2023-09-25 07-50-47](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/e552977f-fc8a-42cb-9e96-ad8ace4215b4)
+
+
+A vote
+![Captura de tela de 2023-09-25 07-57-44](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/942ef683-e21a-4731-9799-9d5a2800a368)
+
+
+The result of a certain poll
+![Captura de tela de 2023-09-25 08-01-44](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/fa67a0d4-aeb2-4c16-8a6c-2fd12d00464b)
+
+
+An example of a .env file for the application
+![Captura de tela de 2023-09-25 08-16-49](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/350b3cc1-783c-459f-b4bb-121a29211608)
+
+
