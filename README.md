@@ -7,3 +7,8 @@ All dependencies are already installed in the project, so the only command you n
 
 
 ![Captura de tela de 2023-09-25 07-34-43](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/3f62f3bc-1627-4270-8bdd-b9348f218a11)
+Creation of a poll
+
+
+![Captura de tela de 2023-09-25 07-36-31](https://github.com/tiagoalexandrecs/Drivencracy/assets/122137155/8869a718-ab7a-4307-aa00-0c435087bfdd)
+Retrieval of all created polls
