@@ -12,7 +12,7 @@ export async function createPoll(req,res){
     
     try{
         await db.collection("polls").insertOne({title: title, expireAt: expireAt? expireAt : defaultExpire})
-        let poll= await db.collection("polls").findOne({title: title})
+        let poll= await db.collection("polls").findOne({title: title, expireAt: expireAt})
         return res.status(201).send(poll)
     } catch(err){
         console.log(err)
