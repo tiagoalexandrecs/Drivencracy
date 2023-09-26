@@ -1,7 +1,13 @@
 # Drivencracy
 A back-end application which allows the simulation of an electoral process towards various polls
 
-Its main programming language is Javascript, which was implemented through all the files and layers of the project.Moreover, in order to store all the data and its analysis, the database technology MongoDB was chosen to fulfill this role.
+Its main programming language is Javascript, which was implemented through all the files and layers of the project.Moreover, in order to store all the data and its analysis, the database technology MongoDB was chosen to fulfill this role. Some other technologies and tools are listed below :
+
+- Dayjs library
+- Dotenv and MongoClient
+- Joi library for schemas' validation
+- Architecture( Controllers and Routers)
+- Middleware validation
 
 All dependencies are already installed in the project, so the only command you need to apply is the "npm i", which will install all dependencies that are written in the package-json archive.Then, run "npm run start" to initialize the service. However, the connection with MongoDB requires either its local installation by the user, or the usage of a remote MongoDB database.
 
